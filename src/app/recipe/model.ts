@@ -5,7 +5,7 @@ export interface ingrediant {
 export interface step {
     
     description: string,
-    time:number,
+    time?:number,
     photo?:string,
     photoData?: string
     video?:string

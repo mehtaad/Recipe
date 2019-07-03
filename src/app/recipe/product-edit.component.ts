@@ -148,7 +148,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
         this.steps.push(
         this.fb.group({
           description: [step.description, Validators.required],
-          time: [step.time, Validators.required],
+          time: [step.time],
           photo: [''],
           photoData: [step.photoData?step.photoData:''],
           video: [step.video?step.video:'', Validators.pattern(urlRegex)]
@@ -173,7 +173,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
   buildStep(): FormGroup {
     return this.fb.group({
       description: ['', Validators.required],
-      time: ['', Validators.required],
+      time: [''],
       photo: [''],
       photoData: [''],
       video: ['', Validators.pattern(urlRegex)]
@@ -230,9 +230,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
     this.productForm.reset();
     this.router.navigate(['/recipe']);
   }
-  previewVideo(index) {
-    this.steps.controls[index+''].updateValueAndValidity();
-  }
+  
   preview(file:any, index:string) 
   {
     let files = file.files;

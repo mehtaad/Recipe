@@ -39,7 +39,7 @@
             </p>
           </div>
           <!-- option to strat the time -->
-          <div class="row">
+          <div class="row" *ngIf="product.steps[stepNumber-1].time">
             <div class="col-md-2">
                 <button class="btn btn-outline-primary"
                         style="width:180px;float:left"
