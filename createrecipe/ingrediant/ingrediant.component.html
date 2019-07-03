@@ -1,0 +1,51 @@
+<div class="card">
+  
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="save()"
+          [formGroup]="customerForm">
+    <div class="card-header">
+	    Add Ingrediants!
+	</div>      
+	<div *ngIf="true">
+        <div formArrayName="addresses" *ngFor="let address of addresses.controls; let i=index">
+          <div [formGroupName]="i">
+            <div class="form-group row mb-2">
+              <label class="col-md-1 col-form-label"
+                     attr.for="{{'street1Id' + i}}">Ingrediant{{i+1}}</label>
+              <div class="col-md-10">
+                <input class="form-control"
+                       id="{{'street1Id' + i}}"
+                       type="text"
+                       placeholder="Ingrediant (required)"
+                       formControlName="street1"
+                       [ngClass]="{'is-invalid': (address.controls.street1.touched || 
+                                                  address.controls.street1.dirty) && 
+                                                  !address.controls.street1.valid }">
+                <span class="invalid-feedback">
+                  <span *ngIf="address.controls.street1.errors?.required">
+                    Please enter ingrediant.
+                  </span>
+                </span>
+              </div>
+              <span >
+                <button *ngIf="i>0" class="btn text-danger" (click)="deleteIngrediant(i)"><i class="fa fa-trash"></i></button>
+                <button *ngIf="i === addresses.controls.length-1" [disabled]="!addresses.valid"
+                    (click)="addAddress()" class="btn text-success"><i class="fa fa-plus"></i></button>
+              </span>  
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+<!-- <br>Dirty: {{ customerForm.dirty }}
+<br>Touched: {{ customerForm.touched }}
+<br>Valid: {{ customerForm.valid }}
+<br>Value: {{ customerForm.value | json }}
+<br>Street: {{ addresses.get('0.street1')?.value }}
+<br>&nbsp; -->
+
